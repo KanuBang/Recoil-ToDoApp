@@ -10,6 +10,9 @@ function CreateToDo() {
     const setToDos = useSetRecoilState(toDoState)
     const {register, handleSubmit, setValue} = useForm<IForm>()
 
+
+    // 여기서 toDo 인자는 input 입력 값을 handleSubmit으로부터 전달 받음
+    // toDo 리스트를 setter 업데이트
     const handleValid = ({toDo}: IForm) => {
         setToDos((oldToDos) => [
             {text: toDo, id:Date.now(), category: "TO_DO"},

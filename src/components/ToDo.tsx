@@ -10,16 +10,12 @@ function ToDo({text, category, id}: IToDo) {
         } = event
         //여기서 name은 category이름임
         setToDos((oldToDos) => {
-            // li 클릭 => onClick 이벤트에 등록된 onClick 핸들러 실행
-            // 먼저 button의 name 값을 currentTarget.name으로 가져옴
-            // recoil setter 함수로 oldToDos 리스트를 받아옴
-            // 그 다음 oldToDos의 요소 하나 하나와 현재 클릭된 요소의 id가 같은 것을 찾음
-            // 만약 클릭된 요소와 oldToDos에 클릭된 요소가 같다면 그 클리된 요소를 리턴하여 targetIndex에 저장
-            // 그 다음 새로운 카테고리를 반영한 객체를 생성
             const targetIndex = oldToDos.findIndex(toDo => toDo.id === id);
-            const newToDo = {text:text, id, category:name}; // ES6문법
-            console.log(newToDo)
-            return oldToDos
+            const newToDo = {text:text, id, category:name as any}; 
+            // ES6문법
+            // as any => 타입 체킹 회피: 여기서 name은 stirng이고 categoty는 category: "TO_DO" | "DOING" | "DONE"; 
+            // 이런 상황이라 타입 체킹 회피
+            return [...oldToDos.slice(0,targetIndex),newToDo,...oldToDos.slice(targetIndex+1)]
         })
     }
 
