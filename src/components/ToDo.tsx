@@ -8,17 +8,25 @@ function ToDo({text, category, id}: IToDo) {
         const {
             currentTarget: {name},
         } = event
-        //여기서 name은 category이름임
+    
         setToDos((oldToDos) => {
             const targetIndex = oldToDos.findIndex(toDo => toDo.id === id);
             const newToDo = {text:text, id, category:name as any}; 
-            // ES6문법
-            // as any => 타입 체킹 회피: 여기서 name은 stirng이고 categoty는 category: "TO_DO" | "DOING" | "DONE"; 
-            // 이런 상황이라 타입 체킹 회피
             return [...oldToDos.slice(0,targetIndex),newToDo,...oldToDos.slice(targetIndex+1)]
         })
     }
+    /*
+        1. TO_DO 중 하나가 DONE으로 바뀐다면 
+            1) button의 onClick 실행
+            2) setToDos 실행
+            3) DONE 이 클릭되었기에 name에는 DONE이 저장
+            4) 그 전의 toDos 리스트에서 현재 카테고리가 바뀐 task의 index를 찾음
+            5) 그리고 새롭게 업데이트된 newToDo를 만들고
+            6) 카테고리가 DONE으로 업데이트된 task를 포함한 새로운 배열을 리턴
+            7) toDos 업데이트
+            8) 그 결과 다시 ToDoList로 이동
 
+    */
     return (
         <li>
             <span>{text}</span>

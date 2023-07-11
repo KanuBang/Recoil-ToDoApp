@@ -11,9 +11,13 @@ function CreateToDo() {
     const category = useRecoilValue(categoryState)
     const {register, handleSubmit, setValue} = useForm<IForm>()
 
-
-    // 여기서 toDo 인자는 input 입력 값을 handleSubmit으로부터 전달 받음
-    // toDo 리스트를 setter 업데이트
+    /*
+        1. 초기화면 TO_DO에서 인풋을 넣는 상황
+            1) toDoSate를 update 시키는 setter와 현재 category 값(TO_DO)를 가져옴
+            2) 인풋에 입력 후 제출
+            3) handleVaild 실행 후 setToDos로 ToDos 업데이트
+            4) ToDos에 저장되는 task의 category는 현재 category의 state 값
+    */
     const handleValid = ({toDo}: IForm) => {
         setToDos((oldToDos) => [
             {text: toDo, id:Date.now(), category:category},
