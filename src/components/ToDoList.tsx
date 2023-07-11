@@ -2,6 +2,20 @@ import { useRecoilState, useRecoilValue } from "recoil";
 import {Categories, toDoSelector, categoryState} from "../atoms";
 import CreateToDo from "./CreateToDo";
 import ToDo from "./ToDo";
+/*
+todolist의 가장 큰 틀
+1. DONE, DOING, TO_DO => 카테고리 선택
+2. CREATE TO DO
+3. CATEGORY 별 TASKS 보여주기
+*/
+
+/*
+atoms.tsx 
+1. 카테고리 상태 
+2. task 상태
+3. 카테고리 별 task 상태
+*/
+
 
 function ToDoList() {
   const toDos = useRecoilValue(toDoSelector)
