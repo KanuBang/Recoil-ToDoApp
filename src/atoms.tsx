@@ -1,4 +1,4 @@
-import {atom} from "recoil";
+import {atom, selector} from "recoil";
 
 // toDoState의 인터페이스
 export interface IToDo {
@@ -13,3 +13,14 @@ export const toDoState = atom<IToDo[]>({
     default: []
 })
 
+export const toDoSelector = selector({
+    key: "toDoSelector",
+    get: ({get}) => {
+        const toDos = get(toDoState)
+        return [
+            toDos.filter(toDos => toDos.category === "TO_DO"),
+            toDos.filter(toDos => toDos.category === "DOING"),
+            toDos.filter(toDos => toDos.category === "DONE")
+        ]
+    }
+})
