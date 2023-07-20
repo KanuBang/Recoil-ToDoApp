@@ -1,7 +1,6 @@
 import React from "react";
-import { useSetRecoilState } from "recoil";
+import { useRecoilValue, useSetRecoilState } from "recoil";
 import {Categories, IToDo, toDoState} from "../atoms";
-
 function ToDo({text, category, id}: IToDo) {
     const setToDos = useSetRecoilState(toDoState)
     const onClick = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -27,15 +26,14 @@ function ToDo({text, category, id}: IToDo) {
             8) 그 결과 다시 ToDoList로 이동
 
     */
-    return (
+    return ( 
         <li>
             <span>{text}</span>
-            {/*If category is not "Doing", I will treat it "Doing"*/}
             {category !== Categories.DOING && (<button name={Categories.DOING} onClick={onClick}>DOING</button>)}
             {category !== Categories.TO_DO && (<button name={Categories.TO_DO} onClick={onClick}>TO_DO</button>)}
-            {/*If category is not "Done", I will treat this task is not "DONE".*/}
             {category !== Categories.DONE && (<button name={ Categories.DONE} onClick={onClick}>DONE</button>)}
         </li>
+
     )
 }
 

@@ -18,6 +18,7 @@ function CreateToDo() {
             3) handleVaild 실행 후 setToDos로 ToDos 업데이트
             4) ToDos에 저장되는 task의 category는 현재 category의 state 값
     */
+   
     const handleValid = ({toDo}: IForm) => {
         setToDos((oldToDos) => [
             {text: toDo, id:Date.now(), category:category},
@@ -28,7 +29,7 @@ function CreateToDo() {
     }
 
     return (
-        <form onSubmit={handleSubmit(handleValid)}>
+        <form style={{display:"flex", flexDirection:"column"}} onSubmit={handleSubmit(handleValid)}>
             <input {...register("toDo", {required: "Please write a To Do",})}
                 placeholder="Write a to do"
             />

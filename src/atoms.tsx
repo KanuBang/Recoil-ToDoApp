@@ -1,28 +1,35 @@
 import {atom, selector} from "recoil";
+import { recoilPersist } from "recoil-persist";
 
 export enum Categories {
     "TO_DO" = "TO_DO",
     "DOING" = "DOING",
     "DONE" = "DONE"
 }
+
 // toDoState의 인터페이스
 export interface IToDo {
     text:string;
     id:number;
-    category: Categories; // 이 세가 중 한 가지만 가능, or느낌
+    category: string; // 이 세가 중 한 가지만 가능, or느낌
 }
- 
-// task 저장
+
+
+// task 저장 + 영속성 부여
 export const toDoState = atom<IToDo[]>({
     key: "todo",
-    default: []
+    default: [],
+   
 })
 
 // task category 저장
+
+
 export const categoryState = atom<Categories>({
     key: "category",
     default: Categories.TO_DO
 })
+
 
 export const toDoSelector = selector({
     key: "toDoSelector",
