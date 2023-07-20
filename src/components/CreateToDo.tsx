@@ -10,7 +10,7 @@ function CreateToDo() {
     const setToDos = useSetRecoilState(toDoState)
     const category = useRecoilValue(categoryState)
     const {register, handleSubmit, setValue} = useForm<IForm>()
-
+   
     /*
         1. 초기화면 TO_DO에서 인풋을 넣는 상황
             1) toDoSate를 update 시키는 setter와 현재 category 값(TO_DO)를 가져옴
